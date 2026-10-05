@@ -634,6 +634,7 @@ void query(const Options& o,const std::string& kind) {
         stats_output(o,stats,std::chrono::duration<double>(std::chrono::steady_clock::now()-start).count(),c,kind);
     } catch (...) { if (result.is_open()) result.close(); if (!temp.empty()) { std::error_code ec; fs::remove(temp,ec); } throw; }
 }
+#ifndef LATTICE_NO_MAIN
 int main(int argc,char** argv) {
     std::locale::global(std::locale::classic());
     try {
@@ -666,3 +667,4 @@ int main(int argc,char** argv) {
       catch(const fs::filesystem_error& e) { std::cerr << e.what() << '\n'; return 4; }
       catch(const std::exception& e) { std::cerr << e.what() << '\n'; return 1; }
 }
+#endif

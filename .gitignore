@@ -4,6 +4,8 @@
 /data-stress/
 /demo-data/
 /results/
+/fuzz-corpus/
+/fuzz-artifacts/
 /.venv/
 /.venv-plots/
 *.duckdb

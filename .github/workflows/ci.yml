@@ -1,5 +1,7 @@
 name: correctness
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   release:
     strategy:
@@ -20,6 +22,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    env:
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+      ASAN_OPTIONS: abort_on_error=1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,3 +36,48 @@ jobs:
         run: cmake -S . -B build -DLATTICE_ASAN=ON
       - run: cmake --build build --config RelWithDebInfo --parallel 2
       - run: ctest --test-dir build -C RelWithDebInfo --output-on-failure
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+      ASAN_OPTIONS: detect_leaks=1:abort_on_error=1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: cmake -S . -B build-fuzz -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=clang++ -DLATTICE_ASAN=ON -DLATTICE_FUZZ=ON
+      - run: cmake --build build-fuzz --parallel 2
+      - run: python tools/make_fuzz_corpus.py --lattice build-fuzz/lattice --output fuzz-corpus
+      - run: |
+          mkdir -p fuzz-artifacts
+          set -o pipefail
+          build-fuzz/lattice_fuzz fuzz-corpus -seed=731 -max_len=4194304 -runs=20000 -timeout=10 -rss_limit_mb=512 -artifact_prefix=fuzz-artifacts/ -print_final_stats=1 2>&1 | tee fuzz-artifacts/run.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: libfuzzer-evidence
+          path: fuzz-artifacts/
+  memory-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+      - run: cmake --build build --parallel 2
+      - run: python tools/generate_ticks.py --output data-stress/source.txt --rows 24000000
+      - run: python tools/import_dataset.py --lattice build/lattice --input data-stress/source.txt --contract ESZ26 --data data-stress/column
+      - run: python tools/import_dataset.py --lattice build/lattice --row-source data-stress/column --contract ESZ26 --data data-stress/row
+      - run: |
+          source_hash=$(python -c "import json;print(json.load(open('data-stress/column/ESZ26/manifest.json'))['source_sha256'])")
+          mkdir -p results
+          python tools/check_memory.py --lattice build/lattice --data data-stress/column --row-data data-stress/row --rows 24000000 --source-sha256 "$source_hash" --report results/memory-linux.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linux-memory-evidence
+          path: results/memory-linux.json

@@ -1,5 +1,7 @@
 # lattice-market
 
+[![Correctness](https://github.com/DanielPastor05/lattice-market/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielPastor05/lattice-market/actions/workflows/ci.yml)
+
 A C++20 streaming columnar engine for NinjaTrader tick analytics, with exact
 quarter-point prices, nanosecond timestamps and reproducible data imports.
 
@@ -66,8 +68,10 @@ If CMake is not on PATH, Visual Studio's bundled copy is usually located under
 `Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin`. Run the same commands
 using its absolute path. The local initial build was tested with MSVC
 19.43.34809 and Python 3.14.4 on Windows. The repository includes Linux,
-Windows and sanitizer CI configurations; their remote runs are not yet
-verified. The synthetic demo creates its own temporary input and removes it
+Windows and sanitizer CI configurations. Release checks passed on Ubuntu and
+Windows, and sanitizer checks passed on Linux/Clang (ASan + UBSan) and MSVC
+(ASan) in [the initial published CI run](https://github.com/DanielPastor05/lattice-market/actions/runs/37337662759).
+The synthetic demo creates its own temporary input and removes it
 when finished, so a clean checkout works without proprietary data.
 
 ## Import your exports
@@ -232,9 +236,16 @@ working set stayed below 8 MiB. The fixture and reproduction commands are in
 [validation](docs/VALIDATION.md); Windows commit/working-set evidence does not
 establish Linux RSS limits or importer memory bounds.
 
-The 1M/10M/100M timing series, coverage-guided fuzzing, Linux memory-cap check
-and Linux execution remain pending. Remote CI is configured but has not been
-run from this local project.
+An optional `LATTICE_FUZZ=ON` Clang target exercises the production binary reader,
+JSON reader and source-line parser with libFuzzer. It checks raw bytes and an
+independent CRC-repaired path, bounded to 4 MiB. Synthetic seeds include both
+layouts and short multi-block files. CI now also schedules a Release Linux
+memory-cap check; execution evidence for these new jobs is pending the next push.
+See the commands and limits in [validation](docs/VALIDATION.md).
+
+The 1M/10M/100M timing series remains pending. Windows evidence uses a committed
+memory cap; the Linux runner uses `RLIMIT_AS` and reports each child's peak RSS
+separately.
 
 See [binary format](docs/FORMAT.md), [design and limits](docs/DESIGN.md),
 [data provenance](docs/DATA.md) and [validation results](docs/VALIDATION.md).

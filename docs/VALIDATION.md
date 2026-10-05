@@ -134,10 +134,56 @@ python tools/check_memory.py --lattice build/Release/lattice.exe `
 
 This fixture checks memory, not the planned 1M/10M/100M timing series.
 
+## Publication and Linux validation phase
+
+The public repository is [DanielPastor05/lattice-market](https://github.com/DanielPastor05/lattice-market).
+The initial commit `42d496cfdb4b08431bb0f32ada9db9a90591446a` passed all four
+[GitHub Actions jobs](https://github.com/DanielPastor05/lattice-market/actions/runs/37337662759):
+Ubuntu and Windows Release (engine, mutation and DuckDB suites), Linux/Clang
+ASan + UBSan, and Windows/MSVC ASan. Earlier local results above are preserved
+as historical evidence; their raw source hashes predate Git publication and can
+also differ from a checkout's newline normalization.
+
+The portable memory runner also passed all nine Windows queries after the
+Linux branch was added: [portable-runner Windows report](validation-memory-windows-portable.json).
+The existing 64-record and two-short-block fixtures seed a new optional libFuzzer
+target. It includes the production translation unit behind a main-only guard;
+there is no duplicate reader. Raw binary, repaired binary, JSON and source-line
+paths handle expected rejection independently. Unexpected exceptions and
+sanitizer diagnostics fail the campaign. The repair's cumulative payload hashing
+is bounded by input size, even for overlapping descriptors. Input limit: 4 MiB;
+JSON limit: 1 MiB; source-line limit: 4096 bytes.
+
+Reproduce on Linux with Clang and a compatible C++20 standard library:
+
+```sh
+cmake -S . -B build-fuzz -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=clang++ -DLATTICE_ASAN=ON -DLATTICE_FUZZ=ON
+cmake --build build-fuzz --parallel 2
+python tools/make_fuzz_corpus.py --lattice build-fuzz/lattice --output fuzz-corpus
+mkdir -p fuzz-artifacts
+UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 ASAN_OPTIONS=abort_on_error=1 \
+  build-fuzz/lattice_fuzz fuzz-corpus -seed=731 -max_len=4194304 -runs=20000 \
+  -timeout=10 -rss_limit_mb=512 -artifact_prefix=fuzz-artifacts/ -print_final_stats=1
+```
+
+The new CI campaign is bounded to 20,000 executions and uploads its log/crash
+artifacts, including on failure. A finite successful campaign is evidence for
+those seeds/mutations, not a proof of complete parser safety. The dedicated
+Linux memory job builds a separate Release binary, creates a 24M-record fixture
+and runs all nine queries through GNU time with `RLIMIT_AS=256 MiB` set before
+execution. GNU time measures each executed child's peak RSS independently. An
+allocation-denial canary verifies the cap; timeouts kill the complete child
+process group. This is a virtual-address-space cap, not an RSS-specific limit,
+and sanitizers are not active in that constrained-memory run.
+
+New libFuzzer and Linux memory execution results are pending the next pushed CI
+run. The 1M/10M/100M timing series remains outside this validation phase.
+
 ### Four-variant real-data measurements
 
-The current 0.2.0 study passed all 24 workloads in row/column/pruned/DuckDB,
+The recorded 0.2.0 study passed all 24 workloads in row/column/pruned/DuckDB,
 including all complete-history bars and flow outputs. All 864 timed
 invocations passed their output comparison: 192 warmups and 672 measured
-samples. Source and binary fingerprints match the finished working tree.
+samples. Source and binary fingerprints identify the original benchmark working
+tree, before the later validation tooling changes.
 See [PERFORMANCE.md](PERFORMANCE.md) for full results and historical evidence.

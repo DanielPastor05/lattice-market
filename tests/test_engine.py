@@ -15,6 +15,7 @@ import zlib
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from import_dataset import publish, publish_rows
+from make_fuzz_corpus import short_blocks
 from reference import compare_rows, evaluate, parse_iso
 
 LATTICE = Path(sys.argv.pop(1)).resolve()
@@ -238,28 +239,7 @@ class EngineTest(unittest.TestCase):
                                '20260909 235959 9999999;100.25;100;100.25;2\n')
         publish(self.source, 'ESZ26', self.data, LATTICE)
         partition = next((self.data / 'ESZ26').glob('*.lmc'))
-        original = partition.read_bytes()
-        header = bytearray(original[:128])
-        # Split two-row columns into two independently CRC-protected one-row blocks.
-        payload, directory = bytearray(), bytearray()
-        for row in range(2):
-            entry = bytearray(168)
-            ns = original[128+16+row*8:128+24+row*8]
-            entry[:8], entry[8:16], entry[16:20] = ns, ns, (1).to_bytes(4,'little')
-            for field in range(6):
-                data = original[128+field*16+row*8:128+field*16+row*8+8]
-                descriptor = 24+field*24
-                entry[descriptor:descriptor+8] = (128+len(payload)).to_bytes(8,'little')
-                entry[descriptor+8:descriptor+16] = (8).to_bytes(8,'little')
-                entry[descriptor+16:descriptor+20] = zlib.crc32(data).to_bytes(4,'little')
-                payload.extend(data)
-            directory.extend(entry)
-        header[56:64], header[64:72] = (2).to_bytes(8,'little'), (128+len(payload)).to_bytes(8,'little')
-        header[72:80] = len(directory).to_bytes(8,'little')
-        header[80:88] = (128+len(payload)+len(directory)).to_bytes(8,'little')
-        header[88:92], header[92:96] = zlib.crc32(directory).to_bytes(4,'little'), bytes(4)
-        header[92:96] = zlib.crc32(header).to_bytes(4,'little')
-        partition.write_bytes(header+payload+directory)
+        partition.write_bytes(short_blocks(partition.read_bytes()))
         manifest = publish_rows(self.data, 'ESZ26', self.row_data, LATTICE)
         self.assertEqual(manifest['conversion_block_count'], 2)
         for kind in ('summary','bars','flow'):
