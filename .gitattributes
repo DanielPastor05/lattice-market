@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.png binary
 *.svg whitespace=-blank-at-eol
+docs/validation-libfuzzer.log whitespace=-blank-at-eol

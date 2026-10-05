@@ -1,7 +1,7 @@
 # Reproducible performance experiment
 
 The first study below is the preserved engine 0.1.0 three-variant experiment.
-Its source hashes identify that historical implementation. The current 0.2.0
+Its source hashes identify that historical implementation. The recorded 0.2.0
 study adds row storage and is recorded separately; do not combine samples across
 studies or compare historical source hashes with the current working tree.
 
@@ -283,7 +283,9 @@ python -m venv .venv-plots
 - [Environment, workload counts and provenance](../bench/results/2026-10-05-row/metadata.json).
 
 The separate Windows memory experiment in [VALIDATION.md](VALIDATION.md) is
-not a per-benchmark peak-RSS measurement. The 1M/10M/100M timing series,
-Linux execution/RSS cap and coverage-guided fuzzing remain pending. Profiling
+not a per-benchmark peak-RSS measurement. A subsequent [CI validation phase](VALIDATION.md)
+passed Linux Release/ASan/UBSan, a bounded coverage-guided campaign and a
+separate Linux address-space-cap/RSS experiment. The 1M/10M/100M timing series
+remains pending. Profiling
 should precede any full-scan optimization; these measurements do not support
 a universal performance claim. Historical three-variant samples remain intact.

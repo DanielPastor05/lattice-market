@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "run_id": 37338566852,
+  "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852",
+  "implementation_commit": "1adc732e8ece26ca09f5ef1cf3d95b2908c7deea",
+  "jobs": [
+    {
+      "name": "memory-linux",
+      "id": 111859505667,
+      "conclusion": "success",
+      "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852/job/111859505667"
+    },
+    {
+      "name": "sanitizers (windows-latest)",
+      "id": 111859505851,
+      "conclusion": "success",
+      "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852/job/111859505851"
+    },
+    {
+      "name": "fuzz",
+      "id": 111859505945,
+      "conclusion": "success",
+      "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852/job/111859505945"
+    },
+    {
+      "name": "release (ubuntu-latest)",
+      "id": 111859505955,
+      "conclusion": "success",
+      "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852/job/111859505955"
+    },
+    {
+      "name": "release (windows-latest)",
+      "id": 111859506028,
+      "conclusion": "success",
+      "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852/job/111859506028"
+    },
+    {
+      "name": "sanitizers (ubuntu-latest)",
+      "id": 111859506373,
+      "conclusion": "success",
+      "url": "https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852/job/111859506373"
+    }
+  ],
+  "artifacts": {
+    "validation-memory-linux.json": {
+      "artifact_id": 11357272679,
+      "sha256": "13a3444efec6258b9f20cbf0edf1346ba68c96dd244f1375e1c3446317a3c036"
+    },
+    "validation-libfuzzer.log": {
+      "artifact_id": 11357178283,
+      "sha256": "b9fc45bb24b69dfca916c658979d1339612fe2741d399b7e0b941919e0975231"
+    }
+  },
+  "fuzzer_executions": 20000,
+  "linux_peak_rss_bytes": 7647232,
+  "linux_limit_address_space_bytes": 268435456
+}

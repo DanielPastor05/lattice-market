@@ -40,8 +40,9 @@ python tools/validate_real.py --lattice build/Release/lattice.exe --data data `
 ```
 
 At the initial milestone, Linux/macOS builds, remote GitHub Actions, sanitizers,
-mutation campaigns and formal memory-limit tests had not been executed. Linux execution remains pending because this host
-has no installed WSL environment. No cross-platform success is claimed.
+mutation campaigns and formal memory-limit tests had not been executed. This
+Windows host has no installed WSL environment; subsequent Linux execution uses
+GitHub Actions and is recorded in the publication phase below.
 
 ## Follow-up milestone: independent SQL and repeated measurements
 
@@ -176,8 +177,30 @@ allocation-denial canary verifies the cap; timeouts kill the complete child
 process group. This is a virtual-address-space cap, not an RSS-specific limit,
 and sanitizers are not active in that constrained-memory run.
 
-New libFuzzer and Linux memory execution results are pending the next pushed CI
-run. The 1M/10M/100M timing series remains outside this validation phase.
+### Executed Linux evidence
+
+Implementation commit `1adc732e8ece26ca09f5ef1cf3d95b2908c7deea` passed all six
+[CI jobs](https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852):
+both Release suites, both sanitizer suites, libFuzzer and Linux memory. Saved
+[run identity and artifact hashes](validation-ci-linux.json) bind the reports to
+that implementation commit; the later evidence commit changes documentation and
+archival attributes only. The raw campaign log retains its original bytes.
+
+- libFuzzer completed **20,000 executions**, seed 731, in 43 seconds; 687 new
+  corpus units were added. Its ASan-instrumented process peaked at 262 MiB under
+  the campaign's 512 MiB RSS setting. This is separate from the Release memory
+  experiment. Full [campaign log](validation-libfuzzer.log), including final
+  coverage counters and dictionary, is retained in the repository.
+- All nine Release queries passed on the **24,000,000-record synthetic fixture**
+  with **1,152,000,000 record payload bytes**. The cap-denial canary passed.
+  Maximum measured query RSS was **7,647,232 bytes (7.29 MiB)** under a
+  **268,435,456-byte address-space cap**. The [Linux report](validation-memory-linux.json)
+  contains per-query RSS, outputs, platform/Python, binary/tool/generator hashes
+  and source fingerprint. Its source fingerprint equals the Windows fixture's.
+
+The 1M/10M/100M timing series remains outside this validation phase. These CI
+results establish execution on the recorded Ubuntu runner, not all Linux/macOS
+toolchains or exhaustive fuzz coverage.
 
 ### Four-variant real-data measurements
 

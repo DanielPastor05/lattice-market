@@ -59,6 +59,13 @@ enforcement. See [memory evidence](validation-memory-windows.json) for the bound
 24M-record fixture. This covers query readers, not importer peak memory or an
 arbitrarily large daily writer directory.
 
+On Linux, the same synthetic queries run with `RLIMIT_AS=256 MiB` set before
+execution. GNU time measures each child query's peak RSS independently; the
+cap applies to virtual address space. A denial canary checks enforcement, and
+timeouts kill the whole child process group. Both platforms' query results
+matched the periodic Decimal oracle. [CI identity](validation-ci-linux.json)
+and the [Linux report](validation-memory-linux.json) record executed evidence.
+
 Named query output is written to a temporary sibling and renamed after success.
 Files are not overwritten. Stats are separately published; a failure publishing
 stats can leave an already completed CSV. They are not a joint transaction.

@@ -239,8 +239,10 @@ establish Linux RSS limits or importer memory bounds.
 An optional `LATTICE_FUZZ=ON` Clang target exercises the production binary reader,
 JSON reader and source-line parser with libFuzzer. It checks raw bytes and an
 independent CRC-repaired path, bounded to 4 MiB. Synthetic seeds include both
-layouts and short multi-block files. CI now also schedules a Release Linux
-memory-cap check; execution evidence for these new jobs is pending the next push.
+layouts and short multi-block files. The 20,000-execution campaign passed with
+ASan + UBSan. Nine Release Linux queries over more than 1 GiB of record payload
+also passed under `RLIMIT_AS=256 MiB`, with peak query RSS below 8 MiB.
+Both are verified by [this six-job CI run](https://github.com/DanielPastor05/lattice-market/actions/runs/37338566852).
 See the commands and limits in [validation](docs/VALIDATION.md).
 
 The 1M/10M/100M timing series remains pending. Windows evidence uses a committed
