@@ -1,0 +1,33 @@
+name: correctness
+on: [push, pull_request]
+jobs:
+  release:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r tools/requirements-bench.txt
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DLATTICE_BENCH_TESTS=ON
+      - run: cmake --build build --config Release --parallel 2
+      - run: ctest --test-dir build -C Release --output-on-failure
+  sanitizers:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - if: runner.os == 'Linux'
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=clang++ -DLATTICE_ASAN=ON
+      - if: runner.os == 'Windows'
+        run: cmake -S . -B build -DLATTICE_ASAN=ON
+      - run: cmake --build build --config RelWithDebInfo --parallel 2
+      - run: ctest --test-dir build -C RelWithDebInfo --output-on-failure

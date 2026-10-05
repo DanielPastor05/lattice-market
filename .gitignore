@@ -1,0 +1,15 @@
+/build*/
+/data/
+/data-rows/
+/data-stress/
+/demo-data/
+/results/
+/.venv/
+/.venv-plots/
+*.duckdb
+*.duckdb.wal
+__pycache__/
+*.pyc
+*.Last.txt
+*.tmp
+*.staging-*

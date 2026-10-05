@@ -1,0 +1,548 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_at_utc": "2026-10-05T13:08:45.728420+00:00",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+    "logical_cpus": 16,
+    "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+    "duckdb": "1.5.6",
+    "duckdb_threads": 1,
+    "duckdb_memory_limit": "512MB",
+    "lattice_version": "lattice-market 0.2.0",
+    "lattice_sha256": "f15255f120cffed08a4e16f0418c22890e4228ffd552311c3f0a748c7f83760c",
+    "compiler": {
+      "CMAKE_CXX_COMPILER": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe",
+      "CMAKE_CXX_COMPILER_ID": "MSVC",
+      "CMAKE_CXX_COMPILER_VERSION": "19.43.34809.0"
+    },
+    "cmake_cache_sha256": "3bfaa537ef1a67bcd08f49b8783e1ba76cffd2c4ed853bbd9672dc9e0e6b4510",
+    "release_flags": [
+      "CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG",
+      "CMAKE_GENERATOR:INTERNAL=Visual Studio 17 2022"
+    ],
+    "source_files_sha256": {
+      "src/main.cpp": "82a59d735817c3bf7867168922b9abebdf100508946d70efbf51e5ab9176477f",
+      "CMakeLists.txt": "22a167e3f7a4f70e91ac38c8386cf351c8e725f7cda103c83f45409f3e545348",
+      "tools/benchmark.py": "1dced7652d1d598f41aebe88e158a24e44f00359dd0df4b8941064c988a36670",
+      "tools/duck_baseline.py": "091e6d4a317833a66d5610a6db22d09b40208dd7098da8dc57dc1afc03f63611",
+      "tools/reference.py": "6de7bcfb5e33b561937c7c626981342ff12e9b28d03ed5dc0da3cd54c1191a37",
+      "tools/requirements-bench.txt": "afa5bd1cbd0d0be1318c3e8992b31f1deae587e80425877fc7dee2fee0d1572f",
+      "tools/import_dataset.py": "8d585d5a95ff0ce033b53a5f661e765cef7271ef5a076cdc701158cc081c6dbd"
+    },
+    "git_revision": null,
+    "git_dirty": true,
+    "git_note": "Working tree source hashes identify this run; repository has no commit",
+    "cpu_model": "AMD Ryzen 7 5700U with Radeon Graphics",
+    "installed_ram_bytes": 17179869184
+  },
+  "warmups": 2,
+  "repetitions": 7,
+  "seed": 731,
+  "cache_policy": "Two or more warmups; OS cache uncontrolled and not cleared; no hot/cold guarantee",
+  "lifecycle": "fresh process and DuckDB connection per invocation",
+  "headline_clock": "subprocess start through exit, stdout capture/decoding and stats publication",
+  "internal_clocks": {
+    "lattice": "manifest/metadata validation, payload scan/CRC, aggregation, CSV flush",
+    "duckdb": "SQL planning/execution, fetch, Python CSV serialization/flush; excludes connection/settings"
+  },
+  "workloads_sha256": "e22e070d5816b5903f345a3fd46683498e5207de1818995390a342cde7b8518d",
+  "database_sha256": "48358b47b000914d01d3374766267f9cc94f2356acf6b9d464abc003c423971a",
+  "database_bytes": 117977088,
+  "duckdb_compression": "default automatic",
+  "contracts": {
+    "ESZ26": {
+      "source_sha256": "f29bb1eb8c5b55aac6fd3441979828042c5c227ecb5f567351c344831e634495",
+      "source_bytes": 821014523,
+      "full_text_decimal_summary": [
+        {
+          "contract": "ESZ26",
+          "record_count": 17111923,
+          "volume_contracts": 22521586,
+          "min_price": "7575",
+          "max_price": "7848.5",
+          "vwap": "7743.0475120624275750384542189879522694360867835862003679492199172829124911540422"
+        }
+      ],
+      "lattice_payload_bytes": 821421280,
+      "lattice_row_payload_bytes": 821388400,
+      "row_parent_manifest_sha256": "ebc89b5cbff97e0fdfae25ddc7932e595e6f432bd4b260dc466879135f7b5429",
+      "row_parent_partition_sha256": {
+        "2026-09-09.lmc": "2d8deea8b0ab397921550bfbc2287ea87d2dcd3be94ada698f571674a9620aab",
+        "2026-09-10.lmc": "4a9050387e34ffa380e7eb24a015e73405cb6d921b6e7f01aac040726938172b",
+        "2026-09-11.lmc": "67b126dca6386b11453edccfce7c580d3dc215d9901427379029f4f8a50ba7de",
+        "2026-09-13.lmc": "4b75dd88abdee34a947845d8e32b14fb75f27a0bac6d86f861207cba35f6b456",
+        "2026-09-14.lmc": "8b9e0ec2f1f2d1f7dce78b5aeaf4a5bb30bd74c9aa0a12cb1250be0723fd0a3b",
+        "2026-09-15.lmc": "a2613fff54436bdf2171b04d30af7bdac9fe38d0126d681fc327caf33540a122",
+        "2026-09-16.lmc": "40678976a2efaa89a7e22f4b4ba7f5924da745e2edd09ad807c05cee0b0bae36",
+        "2026-09-17.lmc": "e05cdf5dd2cde2fce8e4a89a9d6d19c2d4e99c456f272c88b529beda2c465682",
+        "2026-09-18.lmc": "25d5acae15a1504a50b3551ff61c799f7dce5d0b4e78c553c8ef589e23f5f5cc",
+        "2026-09-20.lmc": "d35ee0934ea1d80698fb46c8814d53412977dea3bb45f80e9647cc9e480774ad",
+        "2026-09-21.lmc": "a969fd68bff205720b841f71c58ea9ce872e140afe31d46a1363eb291806de4b",
+        "2026-09-22.lmc": "30854b3bb09833832523f6809dbc0f568257f73db0860777a4e0b10068583396",
+        "2026-09-23.lmc": "43479f547a6a94bffa7a6c1564f07c6c961b994651def0a0b9f74a06b66c9717",
+        "2026-09-24.lmc": "6291b469724e40a8bdcca558aaca2c65bd04420193c32134f8e5f2d9ffcf6077",
+        "2026-09-25.lmc": "ad7331ee93037a074ca232f5c59894e26633ac0f6d471a53ab2e546b7ba14241",
+        "2026-09-27.lmc": "526db71c66d5446fa938f9196cae6b10a286e241197797983a33034e36dc7158",
+        "2026-09-28.lmc": "f50571e36e422e6a4eced413aee9528ea2a8aa7a71234510cfa2a6803ebba33e",
+        "2026-09-29.lmc": "68ed311fa9c869695f3fd0a7a4f9c9616ee995996d4b887ab5f889fe23a4e7b8",
+        "2026-09-30.lmc": "69b23aaca06ec88de8f88664952573a04bf2702eae6f6ab1122054e0bfd1607c",
+        "2026-10-01.lmc": "1b4228b923d8bbfdd41d262afa64609ab7bbb33292460ca14a5939ecdb9d2abf",
+        "2026-10-02.lmc": "b986beb157741139337e15c92e4e6b3d77c94efed41c5a41284a3ffc563d2619",
+        "2026-10-04.lmc": "1a3c54c7185c1b733a2145d1dd29752714320579d9ada74f00c7a90e64552744",
+        "2026-10-05.lmc": "4d03bfd93e99f7617881b91afdc1a37b236215ff10801b126be2d890a5b67336"
+      },
+      "row_manifest_sha256": "06f16748cd8799bce2b282abb22716868a3f48056f16cc97bce028a3f418cc1f",
+      "row_partition_sha256": {
+        "2026-09-09.lmc": "b165f527d9acfab0f1e02bfe89189ba88fb8a8abc9637594b4b45dd08fbed788",
+        "2026-09-10.lmc": "f7e1c14b7ee475cf77c3fcd2f6bcb0cc6f71a7850288572ab99177af8cf008de",
+        "2026-09-11.lmc": "202bf247100cc56eebe9eb3056e946161a55a09a752846d7f9e1db31d947389f",
+        "2026-09-13.lmc": "8079c901075afdcd46c56368e78bce4e5f4775ea027fba82c3c5014123a85177",
+        "2026-09-14.lmc": "58a6f3496b1d9e8520f652105f0c281155690215dfc7f1f4de8638626204b041",
+        "2026-09-15.lmc": "58dabdd4ed8f0777e63a980bd4fbc13ac86c957151d2cabbfaafbc4d28a2e341",
+        "2026-09-16.lmc": "f163b497102d641cbcdf3c762bfdd51bded5df8ada384f2dd54369857aeea4a3",
+        "2026-09-17.lmc": "8172c6ef02e2092db19660a29a845af90751cf9df9bad86a47e3253bf5b5437a",
+        "2026-09-18.lmc": "9ae0eed27beadab46005e1466fcf38fdc5470832d5f3fb5a657fd79437895a91",
+        "2026-09-20.lmc": "b2f978b02b1e87996d80236378c0ea7b30e518dce2d1098739506a5ce5c8e151",
+        "2026-09-21.lmc": "f3f7172611b32521cee154a05081ecc5a13576790bf9a1981be1e5f1ca446a01",
+        "2026-09-22.lmc": "9593987f5ac12170389adf4c46d03603d4e9a9d2da9c95894d7b61d6248acc7b",
+        "2026-09-23.lmc": "d379302b1e7127a53369c8dc85ef5b49a51beba28f98e88609e6959ad91f14b6",
+        "2026-09-24.lmc": "25f46104e431a45c75241dac7d4287dc0ecd244b41a49e53acf128b3a44b9556",
+        "2026-09-25.lmc": "ca3d18f399bfd195b37f68415e3c59935d5094b943c7199f5d2f0ecc2827a635",
+        "2026-09-27.lmc": "3f8c94f03b734e9e7d84ac006c1af375f5bd69e7eb256da7f88761137d29a0cd",
+        "2026-09-28.lmc": "46567db0fbefa3b3e92bc7992fe397a83b0d31374f5b498c0c452c4d5355a8f4",
+        "2026-09-29.lmc": "e76e4ac7a8dac01118821b6986aa3e1393d59cef2af2c879b989f785f8566b2e",
+        "2026-09-30.lmc": "077fe9cb71be5e3c7c19c67c643542dd783c8586f8710204213e1bf17cc50f13",
+        "2026-10-01.lmc": "d06334cbfcb524a3fee141874d432d935f8716f7136da5318e81a248cee56aaa",
+        "2026-10-02.lmc": "eca16f0083a6f3b36318f142b51e264b47cde8ccc358490b9e7f153a93dd25ce",
+        "2026-10-04.lmc": "89d978dde1c8ca3633808f715bdc0b059c58f59040945e85341b1ff0d3524f58",
+        "2026-10-05.lmc": "9fa2b66de919423877c42cf405f5a761a5bdfc485038af47b3860c89d6f7de79"
+      },
+      "duckdb_table_schema": [
+        [
+          "source_row",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "timestamp_ns",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "last_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "bid_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "ask_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "volume_contracts",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "NQZ26": {
+      "source_sha256": "d20097cfa579081d72fed6e9a2693219b76eea89dd9fa1f83f0b7faa2d299e2e",
+      "source_bytes": 391693763,
+      "full_text_decimal_summary": [
+        {
+          "contract": "NQZ26",
+          "record_count": 7692171,
+          "volume_contracts": 8281192,
+          "min_price": "29053",
+          "max_price": "31282.5",
+          "vwap": "30415.018087824796237063456565190132048622951864900608511431687612121539990861219"
+        }
+      ],
+      "lattice_payload_bytes": 369249160,
+      "lattice_row_payload_bytes": 369233440,
+      "row_parent_manifest_sha256": "6e7d263dbff294b4a1bb4f201adfdf1fc1fdf4abfa666263095028aedde39c1f",
+      "row_parent_partition_sha256": {
+        "2026-09-09.lmc": "f5ab1a5a742d31d81c815e227d10388ce728a8df6a1251f5b9083f31baa6090f",
+        "2026-09-10.lmc": "32fca9c55a51a4bb33a0eb8d44cd1a928787127687633648584c39da596bc3f5",
+        "2026-09-11.lmc": "9a90638d671952232438c32b94d7db36b0a574e2c8b9b113ab6a546cb0e3419b",
+        "2026-09-13.lmc": "9d09b3df0dd841fe35f8c750402446348047c4ab31d9918b38045e0dd5b57a5f",
+        "2026-09-14.lmc": "d964564bdd05d139beb8aa261cf054462ddb1cf13d367b6458c74ca378c5a5ff",
+        "2026-09-15.lmc": "b636b0828264345911bbfe3a0fdb3b6d3bb741fe9f78d7f111faff3a27084a06",
+        "2026-09-16.lmc": "c822f24176711a572823e30f722f0b4aa14c3226740a0206eb83b8ed1582150a",
+        "2026-09-17.lmc": "b04c8d446d643402967846cf807a35525cc93aca92b1c4f7c6ccee513217a967",
+        "2026-09-18.lmc": "8d69e83f93b4ea806f1b40bc43d2cbce58f074200a32777fd458aaf21f48a6ee",
+        "2026-09-20.lmc": "3b4b14ce318e5b5816c69d8c5f6c3b19e0393639ed4ee81df85bcca26b92ba83",
+        "2026-09-21.lmc": "dfbc56583217c059d3375b8d10004b51c331f98e07f6baeeffad0edaac8e21c4",
+        "2026-09-22.lmc": "8a9b36fb3682f777fe080a2d21da79aac7c27d84dc7c2eef3ae392637bf14d4e",
+        "2026-09-23.lmc": "244dd858725419b0a2d667d6d08591051bcb2e96c95e8fe15db6cc2f81180ed1",
+        "2026-09-24.lmc": "8627bece88a608177e1b2df95fd6146d623a4a8475d9fed92220a58a9bb6bcf9",
+        "2026-09-25.lmc": "40b2ca04a27c27236f003c149d07fd749db3bafecdc682d614e7651e005655da",
+        "2026-09-27.lmc": "032e4948bb9e8c71a014bcb659d827e9e634a9f7dc6d331d8de5858e1a54df10",
+        "2026-09-28.lmc": "cc0811a470aab7d3110c883357b7a62bf09f68367260c17897227fcca352cee5",
+        "2026-09-29.lmc": "ce1f6079b48e978baf2bb536fe6b3492426e96c933f8b5a78ad9b13500277ab4",
+        "2026-09-30.lmc": "83234c7c833a412e12a059d4485bdf92a64cb937acfb215b3ff77190a314c435",
+        "2026-10-01.lmc": "2bce6659f35f2afb2ee52412a1f0be1830e84e4b591f089ecbd31871ff9e3d63",
+        "2026-10-02.lmc": "8a5bed26df352e6450e07bc40ba8b6d15267a591712829df912eafd2a4274717",
+        "2026-10-04.lmc": "65555a9a6bbab0b56513797e342848138ddf9582463f753cbb14ff59742f4d66",
+        "2026-10-05.lmc": "719d87eb9dba669c9101b1d568c01a082ca0c8afd1d3aed2fee1170367e6a841"
+      },
+      "row_manifest_sha256": "fd7de1d8cb87d16326d3896411f2018317aa50006ef7a1b03271d83dde84ec7c",
+      "row_partition_sha256": {
+        "2026-09-09.lmc": "0302b2d28755f273f0ae64a6269c3e287fae100bd25e6710388d2ed10ee18ce2",
+        "2026-09-10.lmc": "673d46139817619474fbd6d8b0d4873fb300924d5aadb6b15f7821b48586c00f",
+        "2026-09-11.lmc": "7bc691c9094ffd228619cd3a604d21676e1f61b6bb4585e3bd36b8af57fe646d",
+        "2026-09-13.lmc": "b05b37107c09d640c182e6abb7aa31ef638ba423738ab1105d7cc4ce8d83f64a",
+        "2026-09-14.lmc": "c0d952037a7551b30223d51519ca41275a3b723835c71f9d27d48f2e32797162",
+        "2026-09-15.lmc": "5e8eeaef91d6ce56479b19a7d30bb36b889d3d516fa5d54c7c0b75e2c9225d2c",
+        "2026-09-16.lmc": "f9b13601275dccc1e0b4d18a5cf4730da825d34612506179171e617aeb195f2d",
+        "2026-09-17.lmc": "5dd43c08fac31d8503eb4023b3bf4198528e8d45e3b44f07e79fa0682f9148a9",
+        "2026-09-18.lmc": "a57ca66fc38523213b5935bd2d9b9791403449654ecea8f7199776dc8b2b7d89",
+        "2026-09-20.lmc": "a2ef76d45bf38e4c4c969ade9ca8b95ea242ea494ddd128df4b22bdaef15f17b",
+        "2026-09-21.lmc": "da2714ad6a318151e39bfc4fee6d823ce2c32efc89d61187050dfc16e34f90c9",
+        "2026-09-22.lmc": "ca25dbb67407f19fa5e6409fe073abfde9e65b6ce829949f6e8a76aeaf83fcc1",
+        "2026-09-23.lmc": "866ccd6711447ed6010c6ab601c03d00b1212c72575acd2b56c356b05df89ba3",
+        "2026-09-24.lmc": "99a7cac758bbc642a0fa826501b06ebbf8f019229953a37b5e98fb364de53f4e",
+        "2026-09-25.lmc": "c154125057a4804fc6030cf5570d33cc9ee3a12a9097cecf10a339165dfd2b88",
+        "2026-09-27.lmc": "e76e04668aad7654f3735f98abea8b680d71af57d42ff0f7b4cc41db59847f3b",
+        "2026-09-28.lmc": "1e5532f54c7bf1e7f59870d5008603470cf14259e9cc2e7adf2a3ae76b6c79b1",
+        "2026-09-29.lmc": "5e2c62be126e52f3707bbf4cf8f03bd0554e773f92cce3c11968f242a1b0022f",
+        "2026-09-30.lmc": "d8e5e8b5a95ca4cef6a143adfc526ae112af71dae4b4028c156176ddfbb045b5",
+        "2026-10-01.lmc": "8131a01d98333f442223243491504d29f8c96c5e1fc8609bdd2bf7ec53fe660b",
+        "2026-10-02.lmc": "18655bf50c78c5b93609b552276f6b53ca1741d72a2085073c31fab7cd41e9e4",
+        "2026-10-04.lmc": "69c9e5a270b171d4c198ae5a85cb65659ba7c1ab800e25823d0b81e925179a36",
+        "2026-10-05.lmc": "ee518d9c7b93f398bf7a8784a8aa7f8f268f83ad595cb009afc4cfb1d928992f"
+      },
+      "duckdb_table_schema": [
+        [
+          "source_row",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "timestamp_ns",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "last_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "bid_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "ask_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "volume_contracts",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "workloads": [
+    {
+      "id": "ESZ26/full/summary/-",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 17111923,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/full/flow/-",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 17111923,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/full/bars/1m",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 17111923,
+      "output_rows": 24104
+    },
+    {
+      "id": "ESZ26/full/bars/1h",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 17111923,
+      "output_rows": 405
+    },
+    {
+      "id": "ESZ26/day/summary/-",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 1663822,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/day/flow/-",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 1663822,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/day/bars/1m",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 1663822,
+      "output_rows": 1380
+    },
+    {
+      "id": "ESZ26/day/bars/1h",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 1663822,
+      "output_rows": 23
+    },
+    {
+      "id": "ESZ26/ten_minutes/summary/-",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "summary",
+      "selected_records": 46082,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/ten_minutes/flow/-",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "flow",
+      "selected_records": 46082,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/ten_minutes/bars/1m",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 46082,
+      "output_rows": 10
+    },
+    {
+      "id": "ESZ26/ten_minutes/bars/1h",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 46082,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/full/summary/-",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 7692171,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/full/flow/-",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 7692171,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/full/bars/1m",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 7692171,
+      "output_rows": 23485
+    },
+    {
+      "id": "NQZ26/full/bars/1h",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 7692171,
+      "output_rows": 405
+    },
+    {
+      "id": "NQZ26/day/summary/-",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 731731,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/day/flow/-",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 731731,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/day/bars/1m",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 731731,
+      "output_rows": 1380
+    },
+    {
+      "id": "NQZ26/day/bars/1h",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 731731,
+      "output_rows": 23
+    },
+    {
+      "id": "NQZ26/ten_minutes/summary/-",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "summary",
+      "selected_records": 19858,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/ten_minutes/flow/-",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "flow",
+      "selected_records": 19858,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/ten_minutes/bars/1m",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 19858,
+      "output_rows": 10
+    },
+    {
+      "id": "NQZ26/ten_minutes/bars/1h",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 19858,
+      "output_rows": 1
+    }
+  ],
+  "finished_at_utc": "2026-10-05T13:30:15.775669+00:00",
+  "measured_invocations": 672
+}

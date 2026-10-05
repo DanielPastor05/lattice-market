@@ -1,0 +1,50 @@
+{
+  "ESZ26": {
+    "status": "passed",
+    "source_sha256": "f29bb1eb8c5b55aac6fd3441979828042c5c227ecb5f567351c344831e634495",
+    "lattice_summary": [
+      {
+        "contract": "ESZ26",
+        "record_count": "17111923",
+        "volume_contracts": "22521586",
+        "min_price": "7575.00",
+        "max_price": "7848.50",
+        "vwap": "7743.0475120624278"
+      }
+    ],
+    "decimal_reference": [
+      {
+        "contract": "ESZ26",
+        "record_count": 17111923,
+        "volume_contracts": 22521586,
+        "min_price": "7575",
+        "max_price": "7848.5",
+        "vwap": "7743.0475120624275750384542189879522694360867835862003679492199172829124911540422"
+      }
+    ]
+  },
+  "NQZ26": {
+    "status": "passed",
+    "source_sha256": "d20097cfa579081d72fed6e9a2693219b76eea89dd9fa1f83f0b7faa2d299e2e",
+    "lattice_summary": [
+      {
+        "contract": "NQZ26",
+        "record_count": "7692171",
+        "volume_contracts": "8281192",
+        "min_price": "29053.00",
+        "max_price": "31282.50",
+        "vwap": "30415.018087824796"
+      }
+    ],
+    "decimal_reference": [
+      {
+        "contract": "NQZ26",
+        "record_count": 7692171,
+        "volume_contracts": 8281192,
+        "min_price": "29053",
+        "max_price": "31282.5",
+        "vwap": "30415.018087824796237063456565190132048622951864900608511431687612121539990861219"
+      }
+    ]
+  }
+}

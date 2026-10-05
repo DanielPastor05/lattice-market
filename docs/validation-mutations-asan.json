@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "cases": 256,
+  "seed": 731,
+  "outcomes": {
+    "accepted": 60,
+    "rejected": 196
+  },
+  "by_kind": {
+    "column/raw": {
+      "accepted": 0,
+      "rejected": 32
+    },
+    "row/raw": {
+      "accepted": 0,
+      "rejected": 32
+    },
+    "column/metadata": {
+      "accepted": 1,
+      "rejected": 31
+    },
+    "row/metadata": {
+      "accepted": 3,
+      "rejected": 29
+    },
+    "column/payload": {
+      "accepted": 19,
+      "rejected": 13
+    },
+    "row/payload": {
+      "accepted": 21,
+      "rejected": 11
+    },
+    "column/manifest": {
+      "accepted": 9,
+      "rejected": 23
+    },
+    "row/manifest": {
+      "accepted": 7,
+      "rejected": 25
+    }
+  },
+  "binary_sha256": "b45c1dde712fb45f4492d0696b1a4e62e840b6d6539e31ce91ebedadf0d98613",
+  "tool_sha256": "5a584c38752c6905beb1dca37e729bcac1fa5c367f2edf7ca9f233223eae8490",
+  "engine_version": "lattice-market 0.2.0",
+  "executed_at_utc": "2026-10-05T13:04:56.009181+00:00",
+  "limitation": "Small CLI seeds; no coverage guidance, exhaustive safety proof or throughput claim"
+}

@@ -1,0 +1,235 @@
+{
+  "status": "passed",
+  "rows": 24000000,
+  "limit_committed_bytes": 268435456,
+  "source_sha256": "8d6a6121a20565527b4a959d95f77848a792fa3b06fb11ab453a1fbe7b0cad5d",
+  "record_payload_bytes": 1152000000,
+  "metric": "Windows Job Object process committed memory; peak working set recorded separately",
+  "limitation": "Windows evidence only; no Linux RSS/rlimit or ASan-in-cap claim",
+  "binary_sha256": "f15255f120cffed08a4e16f0418c22890e4228ffd552311c3f0a748c7f83760c",
+  "probe_sha256": "dba4f1671a16018d3b30ea6246026790974e33d06718a6365283064fc3aea622",
+  "tool_sha256": "af5e8bed79a471b18444016c686233e6c1c115a6e6302b440b90ae6518ee0559",
+  "cap_canary": {
+    "limit_committed_bytes": 67108864,
+    "peak_committed_bytes": 6160384,
+    "peak_working_set_bytes": 4730880,
+    "child_exit_code": 17
+  },
+  "generator_sha256": "d69c1cb57e0ac77711682d04753fcbe2cc778df33cc2be672985be5d0924d465",
+  "executed_at_utc": "2026-10-05T13:07:58.674217+00:00",
+  "runs": [
+    {
+      "mode": "column",
+      "query": "summary",
+      "partition_file_bytes": 1152061784,
+      "manifest_sha256": "1c467ebb3c0b2abf84056f6f5dec98025fa850494f402704d0d12d03c7d8f65f",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 2314240,
+        "peak_working_set_bytes": 6066176,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "contract": "ESZ26",
+          "record_count": "24000000",
+          "volume_contracts": "72000000",
+          "min_price": "10000.25",
+          "max_price": "10249.00",
+          "vwap": "10125.041666666666"
+        }
+      ]
+    },
+    {
+      "mode": "column",
+      "query": "flow",
+      "partition_file_bytes": 1152061784,
+      "manifest_sha256": "1c467ebb3c0b2abf84056f6f5dec98025fa850494f402704d0d12d03c7d8f65f",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 3379200,
+        "peak_working_set_bytes": 7127040,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "contract": "ESZ26",
+          "estimated_buy_records": "24000000",
+          "estimated_sell_records": "0",
+          "unknown_records": "0",
+          "estimated_buy_volume": "72000000",
+          "estimated_sell_volume": "0",
+          "unknown_volume": "0",
+          "classified_record_fraction": "1",
+          "classified_volume_fraction": "1"
+        }
+      ]
+    },
+    {
+      "mode": "column",
+      "query": "bars",
+      "partition_file_bytes": 1152061784,
+      "manifest_sha256": "1c467ebb3c0b2abf84056f6f5dec98025fa850494f402704d0d12d03c7d8f65f",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 2322432,
+        "peak_working_set_bytes": 6078464,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "bucket_start_utc": "2026-09-09T00:00:00.000000000Z",
+          "open": "10182.75",
+          "high": "10249.00",
+          "low": "10000.25",
+          "close": "10121.50",
+          "volume_contracts": "72000000",
+          "record_count": "24000000",
+          "vwap": "10125.041666666666"
+        }
+      ]
+    },
+    {
+      "mode": "pruned",
+      "query": "summary",
+      "partition_file_bytes": 1152061784,
+      "manifest_sha256": "1c467ebb3c0b2abf84056f6f5dec98025fa850494f402704d0d12d03c7d8f65f",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 2318336,
+        "peak_working_set_bytes": 6066176,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "contract": "ESZ26",
+          "record_count": "24000000",
+          "volume_contracts": "72000000",
+          "min_price": "10000.25",
+          "max_price": "10249.00",
+          "vwap": "10125.041666666666"
+        }
+      ]
+    },
+    {
+      "mode": "pruned",
+      "query": "flow",
+      "partition_file_bytes": 1152061784,
+      "manifest_sha256": "1c467ebb3c0b2abf84056f6f5dec98025fa850494f402704d0d12d03c7d8f65f",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 3379200,
+        "peak_working_set_bytes": 7118848,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "contract": "ESZ26",
+          "estimated_buy_records": "24000000",
+          "estimated_sell_records": "0",
+          "unknown_records": "0",
+          "estimated_buy_volume": "72000000",
+          "estimated_sell_volume": "0",
+          "unknown_volume": "0",
+          "classified_record_fraction": "1",
+          "classified_volume_fraction": "1"
+        }
+      ]
+    },
+    {
+      "mode": "pruned",
+      "query": "bars",
+      "partition_file_bytes": 1152061784,
+      "manifest_sha256": "1c467ebb3c0b2abf84056f6f5dec98025fa850494f402704d0d12d03c7d8f65f",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 2314240,
+        "peak_working_set_bytes": 6082560,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "bucket_start_utc": "2026-09-09T00:00:00.000000000Z",
+          "open": "10182.75",
+          "high": "10249.00",
+          "low": "10000.25",
+          "close": "10121.50",
+          "volume_contracts": "72000000",
+          "record_count": "24000000",
+          "vwap": "10125.041666666666"
+        }
+      ]
+    },
+    {
+      "mode": "row",
+      "query": "summary",
+      "partition_file_bytes": 1152017744,
+      "manifest_sha256": "f86695c6faf33e18e6c6977ea8896a6ac1f3d778e7a3544a8466ea0e8b572adb",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 3952640,
+        "peak_working_set_bytes": 7643136,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "contract": "ESZ26",
+          "record_count": "24000000",
+          "volume_contracts": "72000000",
+          "min_price": "10000.25",
+          "max_price": "10249.00",
+          "vwap": "10125.041666666666"
+        }
+      ]
+    },
+    {
+      "mode": "row",
+      "query": "flow",
+      "partition_file_bytes": 1152017744,
+      "manifest_sha256": "f86695c6faf33e18e6c6977ea8896a6ac1f3d778e7a3544a8466ea0e8b572adb",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 3940352,
+        "peak_working_set_bytes": 7634944,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "contract": "ESZ26",
+          "estimated_buy_records": "24000000",
+          "estimated_sell_records": "0",
+          "unknown_records": "0",
+          "estimated_buy_volume": "72000000",
+          "estimated_sell_volume": "0",
+          "unknown_volume": "0",
+          "classified_record_fraction": "1",
+          "classified_volume_fraction": "1"
+        }
+      ]
+    },
+    {
+      "mode": "row",
+      "query": "bars",
+      "partition_file_bytes": 1152017744,
+      "manifest_sha256": "f86695c6faf33e18e6c6977ea8896a6ac1f3d778e7a3544a8466ea0e8b572adb",
+      "counters": {
+        "limit_committed_bytes": 268435456,
+        "peak_committed_bytes": 3944448,
+        "peak_working_set_bytes": 7634944,
+        "child_exit_code": 0
+      },
+      "result": [
+        {
+          "bucket_start_utc": "2026-09-09T00:00:00.000000000Z",
+          "open": "10182.75",
+          "high": "10249.00",
+          "low": "10000.25",
+          "close": "10121.50",
+          "volume_contracts": "72000000",
+          "record_count": "24000000",
+          "vwap": "10125.041666666666"
+        }
+      ]
+    }
+  ]
+}

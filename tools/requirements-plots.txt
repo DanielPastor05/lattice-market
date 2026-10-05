@@ -1,0 +1,2 @@
+# Optional documentation plots; not an engine or benchmark dependency.
+matplotlib==3.11.2

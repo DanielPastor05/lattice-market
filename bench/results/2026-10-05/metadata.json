@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "started_at_utc": "2026-10-05T12:22:24.174208+00:00",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+    "logical_cpus": 16,
+    "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+    "duckdb": "1.5.6",
+    "duckdb_threads": 1,
+    "duckdb_memory_limit": "512MB",
+    "lattice_version": "lattice-market 0.1.0",
+    "lattice_sha256": "628fe61c5f17fcd6fdb0b43d0c82c71884d46b2a89f69102cd77242f843c2518",
+    "compiler": {
+      "CMAKE_CXX_COMPILER": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe",
+      "CMAKE_CXX_COMPILER_ID": "MSVC",
+      "CMAKE_CXX_COMPILER_VERSION": "19.43.34809.0"
+    },
+    "cmake_cache_sha256": "9a7ee5e74aa918cf0fe91a7160ce779e3b5ad9879b40e8e9a39d85a2104495a1",
+    "release_flags": [
+      "CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG",
+      "CMAKE_GENERATOR:INTERNAL=Visual Studio 17 2022"
+    ],
+    "source_files_sha256": {
+      "src/main.cpp": "9f0c9d45c24bd1e67ac82318d66961712317504f79dfbded1eb5285ba18b2d63",
+      "CMakeLists.txt": "3b9e7bb8fd06d4d33c7d190b03aec97dcd48ead862b69e9614c28e7c9ace1023",
+      "tools/benchmark.py": "317519f2f1d388a6369ea7f5c63d0dfc772a8852da9f3882c6d24c1f4b4c9270",
+      "tools/duck_baseline.py": "091e6d4a317833a66d5610a6db22d09b40208dd7098da8dc57dc1afc03f63611",
+      "tools/reference.py": "6de7bcfb5e33b561937c7c626981342ff12e9b28d03ed5dc0da3cd54c1191a37",
+      "tools/requirements-bench.txt": "afa5bd1cbd0d0be1318c3e8992b31f1deae587e80425877fc7dee2fee0d1572f",
+      "tools/import_dataset.py": "f29b508ee087f2f031387f567da711692fa0dbb03a5ee5c6f004ba1ee96b884e"
+    },
+    "git_revision": null,
+    "git_dirty": true,
+    "git_note": "Working tree source hashes identify this run; repository has no commit",
+    "cpu_model": "AMD Ryzen 7 5700U with Radeon Graphics",
+    "installed_ram_bytes": 17179869184
+  },
+  "warmups": 2,
+  "repetitions": 7,
+  "seed": 731,
+  "cache_policy": "Two or more warmups; OS cache uncontrolled and not cleared; no hot/cold guarantee",
+  "lifecycle": "fresh process and DuckDB connection per invocation",
+  "headline_clock": "subprocess start through exit, stdout capture/decoding and stats publication",
+  "internal_clocks": {
+    "lattice": "manifest/metadata validation, payload scan/CRC, aggregation, CSV flush",
+    "duckdb": "SQL planning/execution, fetch, Python CSV serialization/flush; excludes connection/settings"
+  },
+  "workloads_sha256": "e22e070d5816b5903f345a3fd46683498e5207de1818995390a342cde7b8518d",
+  "database_sha256": "48358b47b000914d01d3374766267f9cc94f2356acf6b9d464abc003c423971a",
+  "database_bytes": 117977088,
+  "duckdb_compression": "default automatic",
+  "contracts": {
+    "ESZ26": {
+      "source_sha256": "f29bb1eb8c5b55aac6fd3441979828042c5c227ecb5f567351c344831e634495",
+      "source_bytes": 821014523,
+      "full_text_decimal_summary": [
+        {
+          "contract": "ESZ26",
+          "record_count": 17111923,
+          "volume_contracts": 22521586,
+          "min_price": "7575",
+          "max_price": "7848.5",
+          "vwap": "7743.0475120624275750384542189879522694360867835862003679492199172829124911540422"
+        }
+      ],
+      "lattice_payload_bytes": 821421280,
+      "duckdb_table_schema": [
+        [
+          "source_row",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "timestamp_ns",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "last_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "bid_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "ask_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "volume_contracts",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "NQZ26": {
+      "source_sha256": "d20097cfa579081d72fed6e9a2693219b76eea89dd9fa1f83f0b7faa2d299e2e",
+      "source_bytes": 391693763,
+      "full_text_decimal_summary": [
+        {
+          "contract": "NQZ26",
+          "record_count": 7692171,
+          "volume_contracts": 8281192,
+          "min_price": "29053",
+          "max_price": "31282.5",
+          "vwap": "30415.018087824796237063456565190132048622951864900608511431687612121539990861219"
+        }
+      ],
+      "lattice_payload_bytes": 369249160,
+      "duckdb_table_schema": [
+        [
+          "source_row",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "timestamp_ns",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "last_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "bid_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "ask_ticks",
+          "BIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ],
+        [
+          "volume_contracts",
+          "UBIGINT",
+          "YES",
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "workloads": [
+    {
+      "id": "ESZ26/full/summary/-",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 17111923,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/full/flow/-",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 17111923,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/full/bars/1m",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 17111923,
+      "output_rows": 24104
+    },
+    {
+      "id": "ESZ26/full/bars/1h",
+      "contract": "ESZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 17111923,
+      "output_rows": 405
+    },
+    {
+      "id": "ESZ26/day/summary/-",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 1663822,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/day/flow/-",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 1663822,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/day/bars/1m",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 1663822,
+      "output_rows": 1380
+    },
+    {
+      "id": "ESZ26/day/bars/1h",
+      "contract": "ESZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 1663822,
+      "output_rows": 23
+    },
+    {
+      "id": "ESZ26/ten_minutes/summary/-",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "summary",
+      "selected_records": 46082,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/ten_minutes/flow/-",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "flow",
+      "selected_records": 46082,
+      "output_rows": 1
+    },
+    {
+      "id": "ESZ26/ten_minutes/bars/1m",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 46082,
+      "output_rows": 10
+    },
+    {
+      "id": "ESZ26/ten_minutes/bars/1h",
+      "contract": "ESZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 46082,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/full/summary/-",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 7692171,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/full/flow/-",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 7692171,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/full/bars/1m",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 7692171,
+      "output_rows": 23485
+    },
+    {
+      "id": "NQZ26/full/bars/1h",
+      "contract": "NQZ26",
+      "window": "full",
+      "begin": "2026-09-09T00:00:00Z",
+      "end": "2026-10-06T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 7692171,
+      "output_rows": 405
+    },
+    {
+      "id": "NQZ26/day/summary/-",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "summary",
+      "selected_records": 731731,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/day/flow/-",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "flow",
+      "selected_records": 731731,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/day/bars/1m",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 731731,
+      "output_rows": 1380
+    },
+    {
+      "id": "NQZ26/day/bars/1h",
+      "contract": "NQZ26",
+      "window": "day",
+      "begin": "2026-10-01T00:00:00Z",
+      "end": "2026-10-02T00:00:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 731731,
+      "output_rows": 23
+    },
+    {
+      "id": "NQZ26/ten_minutes/summary/-",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "summary",
+      "selected_records": 19858,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/ten_minutes/flow/-",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "flow",
+      "selected_records": 19858,
+      "output_rows": 1
+    },
+    {
+      "id": "NQZ26/ten_minutes/bars/1m",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1m",
+      "selected_records": 19858,
+      "output_rows": 10
+    },
+    {
+      "id": "NQZ26/ten_minutes/bars/1h",
+      "contract": "NQZ26",
+      "window": "ten_minutes",
+      "begin": "2026-10-01T14:30:00Z",
+      "end": "2026-10-01T14:40:00Z",
+      "kind": "bars",
+      "bucket": "1h",
+      "selected_records": 19858,
+      "output_rows": 1
+    }
+  ],
+  "finished_at_utc": "2026-10-05T12:35:04.949109+00:00",
+  "measured_invocations": 504
+}
