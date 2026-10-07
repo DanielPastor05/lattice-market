@@ -19,7 +19,11 @@ from reference import compare_rows, evaluate, parse_iso
 BEGIN, END = '2026-09-09T00:00:00Z', '2026-09-10T00:00:00Z'
 
 
-def probe(executable, command, limit):
+def probe(executable, command, limit, timeout=130):
+    if timeout <= 10:
+        raise ValueError('Timeout must exceed helper shutdown allowance of 10 seconds')
+    if limit is not None and limit <= 0:
+        raise ValueError('Cap must be positive, or None for measurement only')
     if sys.platform == 'linux':
         import resource
         def capped():
@@ -27,10 +31,10 @@ def probe(executable, command, limit):
         with tempfile.TemporaryDirectory(prefix='lattice-rss-') as temporary:
             peak = Path(temporary)/'rss.txt'
             process = subprocess.Popen(['/usr/bin/time', '--format=%M', '--output', str(peak), '--', *command],
-                                       preexec_fn=capped, start_new_session=True,
+                                       preexec_fn=capped if limit is not None else None, start_new_session=True,
                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             try:
-                stdout,stderr = process.communicate(timeout=130)
+                stdout,stderr = process.communicate(timeout=timeout)
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid,signal.SIGKILL)
                 process.communicate()
@@ -42,14 +46,22 @@ def probe(executable, command, limit):
                                 child_exit_code=result.returncode)
     if os.name != 'nt':
         raise RuntimeError('Supported cap platforms: Windows and Linux')
-    result = subprocess.run([str(executable), str(limit), subprocess.list2cmdline(command)],
-                            capture_output=True, text=True, timeout=130)
+    environment = None
+    # CPython multiprocessing uses this bypass for the Windows venv redirector.
+    # Measure the actual interpreter while preserving its virtualenv prefix/packages.
+    if sys.prefix != sys.base_prefix and os.path.normcase(command[0]) == os.path.normcase(sys.executable):
+        command = [sys._base_executable, *command[1:]]
+        environment = os.environ.copy()
+        environment['__PYVENV_LAUNCHER__'] = sys.executable
+    result = subprocess.run([str(executable), str(limit or 0), subprocess.list2cmdline(command),
+                             str(int((timeout-10)*1000))],
+                            capture_output=True, text=True, timeout=timeout, env=environment)
     marker = next((line.removeprefix('memory_probe:') for line in result.stderr.splitlines()
                    if line.startswith('memory_probe:')), None)
     if marker is None:
         raise RuntimeError(f'No native memory counters: {result.stderr}')
     counters = json.loads(marker)
-    if counters['child_exit_code'] != result.returncode or counters['peak_committed_bytes'] > limit:
+    if counters['child_exit_code'] != result.returncode or (limit is not None and counters['peak_committed_bytes'] > limit):
         raise AssertionError('Native counters/limit inconsistent')
     return result, counters
 

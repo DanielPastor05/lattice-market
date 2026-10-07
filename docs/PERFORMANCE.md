@@ -289,3 +289,44 @@ separate Linux address-space-cap/RSS experiment. The 1M/10M/100M timing series
 remains pending. Profiling
 should precede any full-scan optimization; these measurements do not support
 a universal performance claim. Historical three-variant samples remain intact.
+
+## Synthetic size-series protocol
+
+`tools/scale_benchmark.py` prepares 1M, 10M and 100M deterministic synthetic
+records and reuses the same four-variant benchmark. Each size has full-history
+and end-exclusive 1% prefix windows, with summary, flow and one-minute bars.
+Counts are frozen independently as N and N/100 before timing. The full-text
+Decimal summary and provenance checks remain mandatory, and every invocation
+is compared with the independent DuckDB query result.
+
+On Windows, build `memory_probe.exe` alongside the engine. The helper's zero
+limit means measurement without a committed-memory cap; optional child timeout
+is explicit. All four variants include the helper in the process clock. It
+measures the actual Python interpreter, bypassing the Windows virtualenv
+redirector while retaining its prefix/packages via the
+[CPython multiprocessing pattern](https://github.com/python/cpython/blob/main/Lib/multiprocessing/popen_spawn_win32.py).
+Linux uses GNU time's per-child peak RSS without a process cap. DuckDB retains
+its single-thread/512MB SQL setting, which is not a total resident-memory cap.
+Do not combine these wrapped timings with the earlier unwrapped studies.
+
+```powershell
+.venv/Scripts/python.exe tools/scale_benchmark.py --lattice build/Release/lattice.exe `
+  --probe build/Release/memory_probe.exe --work-dir data-scale/rerun `
+  --output bench/results/size-series-rerun
+```
+
+On Linux, use `.venv/bin/python`, `build/lattice`, and omit `--probe`.
+The scratch and report directories must be new. Generation, checked column
+publication, row conversion, DuckDB preparation and correctness preflight are
+recorded separately from query samples. Full preparation durations include
+hashing/verification. The lattice import clock covers the import subprocess;
+DuckDB's contract preparation clock includes SQL import, count/timestamp checks
+and the final source hash. Those narrower clocks still have different scopes.
+The synthetic inputs remain local; publish the series record and each size's
+metadata, raw samples and summaries.
+
+This ESZ26-only fixture tests a schema shared with NQZ26; real-data benchmarks
+cover both contracts. It has one partition, duplicate timestamp pairs, periodic
+prices/volumes, exclusively buy-classified records and one one-minute bar.
+It cannot establish realistic compression, mixed-flow performance, multiday
+metadata scaling or growing bar cardinality. No performance thresholds run in CI.
